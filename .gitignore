@@ -45,3 +45,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Skipping ios and android folder for the mean time
+
+/android
+/ios
