@@ -1,6 +1,24 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:nyt_articles/constants/enums.dart';
+import 'package:nyt_articles/utils/registry.dart';
+import 'package:nyt_articles/utils/services/api_service.dart';
+
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  setupRegistry();
+  HttpOverrides.global = MyHttpOverrides();
+  final ApiService apiService = registry<ApiService>();
+  apiService.init();
   runApp(const MyApp());
 }
 
