@@ -5,6 +5,8 @@ import 'package:nyt_articles/core/models/article_search/headline.dart';
 import 'package:nyt_articles/core/models/article_search/keyword.dart';
 import 'package:nyt_articles/core/models/article_search/multimedia.dart';
 
+part 'generated/article.g.dart';
+
 @JsonSerializable()
 class Article extends Equatable{
 
@@ -44,7 +46,10 @@ class Article extends Equatable{
 
   @override
   List<Object?> get props => [
-
+    snippet, source, uri, webUrl, printSection, pubDate, documentType, newsDesk, sectionName,
+    typeOfMaterial, id, printPage, wordCount, headline, byline, multimedia, keywords
   ];
 
+  factory Article.fromJson(Map<String, dynamic> json) => _$ArticleFromJson(json);
+  Map<String, dynamic> toJson() => _$ArticleToJson(this);
 }

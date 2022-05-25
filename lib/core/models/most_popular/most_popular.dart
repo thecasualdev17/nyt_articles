@@ -2,6 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:nyt_articles/core/models/most_popular/media.dart';
 
+part 'generated/most_popular.g.dart';
+
 @JsonSerializable()
 class MostPopular extends Equatable{
 
@@ -39,5 +41,8 @@ class MostPopular extends Equatable{
     title, abstract, source, updated, uri, adxKeywords, publishedDate, id,
     assetId, desFacet, orgFacet, perFacet, geoFacet, media
   ];
+
+  factory MostPopular.fromJson(Map<String, dynamic> json) => _$MostPopularFromJson(json);
+  Map<String, dynamic> toJson() => _$MostPopularToJson(this);
 
 }

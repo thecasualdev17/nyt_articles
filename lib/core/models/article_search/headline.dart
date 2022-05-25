@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+part 'generated/headline.g.dart';
+
 @JsonSerializable()
 class Headline extends Equatable{
 
@@ -17,4 +19,6 @@ class Headline extends Equatable{
     main, kicker, name, seo, sub, contentKicker, printHeadline
   ];
 
+  factory Headline.fromJson(Map<String, dynamic> json) => _$HeadlineFromJson(json);
+  Map<String, dynamic> toJson() => _$HeadlineToJson(this);
 }

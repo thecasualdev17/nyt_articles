@@ -2,6 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:nyt_articles/core/models/most_popular/media_metadata.dart';
 
+part 'generated/media.g.dart';
+
 @JsonSerializable()
 class Media extends Equatable{
 
@@ -16,5 +18,8 @@ class Media extends Equatable{
   List<Object?> get props => [
     type, subtype, caption, copyright, approvedForSyndication, mediaMetadata
   ];
+
+  factory Media.fromJson(Map<String, dynamic> json) => _$MediaFromJson(json);
+  Map<String, dynamic> toJson() => _$MediaToJson(this);
 
 }

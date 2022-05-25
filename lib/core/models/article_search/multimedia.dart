@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+part 'generated/multimedia.g.dart';
+
 @JsonSerializable()
 class Multimedia extends Equatable{
   final String? subtype, caption, credit, type, url;
@@ -15,4 +17,6 @@ class Multimedia extends Equatable{
     subtype, caption, credit, type, url, cropName, rank, height, width
   ];
 
+  factory Multimedia.fromJson(Map<String, dynamic> json) => _$MultimediaFromJson(json);
+  Map<String, dynamic> toJson() => _$MultimediaToJson(this);
 }

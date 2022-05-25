@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+part 'generated/keyword.g.dart';
+
 @JsonSerializable()
 class Keyword extends Equatable{
   final String? name, value, major;
@@ -13,5 +15,6 @@ class Keyword extends Equatable{
     name, value, major, rank
   ];
 
-
+  factory Keyword.fromJson(Map<String, dynamic> json) => _$KeywordFromJson(json);
+  Map<String, dynamic> toJson() => _$KeywordToJson(this);
 }
