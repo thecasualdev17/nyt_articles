@@ -29,7 +29,7 @@ class ApiService {
 
   getMostViewedArticle(int period) async {
     var response = await _baseApiServiceCaller.get('$mostViewedUrl$period.json');
-    print(response);
+    //print(response);
     return response;
   }
 

@@ -1,9 +1,15 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:nyt_articles/constants/enums.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nyt_articles/config/app_router.dart';
+import 'package:nyt_articles/config/route_paths.dart';
+import 'package:nyt_articles/constants/design.dart';
 import 'package:nyt_articles/utils/registry.dart';
 import 'package:nyt_articles/utils/services/api_service.dart';
+
+import 'constants/app.dart';
 
 class MyHttpOverrides extends HttpOverrides{
   @override
@@ -19,7 +25,7 @@ void main() {
   HttpOverrides.global = MyHttpOverrides();
   final ApiService apiService = registry<ApiService>();
   apiService.init();
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -27,35 +33,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = window.physicalSize.width;
     return MaterialApp(
-      title: 'NYT Articles',
+      debugShowCheckedModeBanner: false,
+      title: appName,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        textTheme: screenWidth < 500 ? textThemeSmall : textThemeDefault, fontFamily: fontCenturyOldStyle,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: colorPrimary,
+          secondary: colorAccent
+        )
       ),
-      home: const MyHomePage(title: 'NYT Articles'),
+      onGenerateRoute: AppRouter.generateRoute,
+      initialRoute: RoutePaths.index,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-    );
-  }
-}
