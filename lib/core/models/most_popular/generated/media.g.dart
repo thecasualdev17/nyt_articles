@@ -11,8 +11,7 @@ Media _$MediaFromJson(Map<String, dynamic> json) => Media(
       json['subtype'] as String?,
       json['caption'] as String?,
       json['copyright'] as String?,
-      json['approved_for_syndication'] as bool?,
-      (json['mediaMetadata'] as List<dynamic>?)
+      (json['media-metadata'] as List<dynamic>?)
           ?.map((e) => MediaMetadata.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -22,6 +21,5 @@ Map<String, dynamic> _$MediaToJson(Media instance) => <String, dynamic>{
       'subtype': instance.subtype,
       'caption': instance.caption,
       'copyright': instance.copyright,
-      'approved_for_syndication': instance.approvedForSyndication,
-      'mediaMetadata': instance.mediaMetadata,
+      'media-metadata': instance.mediaMetadata,
     };

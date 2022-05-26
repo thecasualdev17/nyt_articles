@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+// Sorting Start
 enum Sorting {
   newest,
   oldest,
@@ -22,3 +23,29 @@ extension SortingExtention on Sorting{
     }
   }
 }
+// Sorting End
+
+// Period Start
+enum Period {
+  day,
+  week,
+  month
+}
+
+extension PeriodExtention on Period{
+  String get name => describeEnum(this);
+
+  int get value {
+    switch(this){
+      case Period.day:
+        return 1;
+      case Period.week:
+        return 7;
+      case Period.month:
+        return 30;
+      default:
+        return 1;
+    }
+  }
+}
+// Period End
