@@ -57,7 +57,7 @@ class MostPopularListViewScreen extends HookConsumerWidget {
                           itemCount: articlesList.value.length,
                           itemBuilder: (context, index){
                             var imageUrl = '';
-                            if(articlesList.value[index].media != null){
+                            if(articlesList.value[index].media!.isNotEmpty){
                               if(articlesList.value[index].media!.first.mediaMetadata!.any((element) => element.format == mediumThreeByTwo440)){
                                 imageUrl = articlesList.value[index].media!.first.mediaMetadata!.singleWhere((element) => element.format == mediumThreeByTwo440).url!;
                               }else{
