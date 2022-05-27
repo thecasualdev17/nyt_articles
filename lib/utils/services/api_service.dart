@@ -29,19 +29,16 @@ class ApiService {
 
   getMostViewedArticle(int period) async {
     var response = await _baseApiServiceCaller.get('$mostViewedUrl$period.json');
-    //print(response);
     return response;
   }
 
   getMostSharedArticle(int period) async{
     var response = await _baseApiServiceCaller.get('$mostSharedUrl$period.json');
-    print(response);
     return response;
   }
 
   getMostEmailedArticle(int period) async{
     var response = await _baseApiServiceCaller.get('$mostEmailedUrl$period.json');
-    print(response);
     return response;
   }
   getArticle(String searchString, Sorting sorting, int page) async {
@@ -52,7 +49,6 @@ class ApiService {
         'q': searchString
       }
     );
-    print(response);
     return response;
   }
 }
