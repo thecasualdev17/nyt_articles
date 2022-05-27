@@ -11,4 +11,4 @@ Resources Used:
 - [New York Times Dev APi](https://developer.nytimes.com/)
 
 Apk Link:
- - [The New York Times App](https://tsfr.io/join/vjxhau)
+ - [The New York Times App](https://tsfr.io/join/vjxhau?id=9963548)
