@@ -9,8 +9,7 @@ import 'package:nyt_articles/core/models/article_search/article.dart';
 import 'package:nyt_articles/core/providers/data_providers.dart';
 import 'package:nyt_articles/utils/mixins/common_mixins.dart';
 import 'package:shimmer/shimmer.dart';
-
-
+import 'package:url_launcher/url_launcher.dart';
 
 class SearchedArticleListViewScreen extends HookConsumerWidget {
 
@@ -67,11 +66,17 @@ class SearchedArticleListViewScreen extends HookConsumerWidget {
                           imageUrl = baseImageUrl + articlesList.value[index].multimedia.firstWhere((element) => element.subtype != null).url!;
                         }
                       }
+                      var pageUrl = '';
+                      if(articlesList.value[index].webUrl != null){
+                        pageUrl = articlesList.value[index].webUrl!;
+                      }
                       return Column(
                         children: [
                           InkWell(
-                            onTap: (){
-                              print('for read more');
+                            onTap: () async {
+                              if(pageUrl.isNotEmpty){
+                                await launchUrl(Uri.parse(pageUrl));
+                              }
                             },
                             child: Card(
                                 child: Padding(
@@ -161,46 +166,71 @@ class SearchedArticleListViewScreen extends HookConsumerWidget {
                     child: ListView.builder(
                       itemBuilder: (_, __) => Padding(
                         padding: const EdgeInsets.only(bottom: 8.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              width: 48.0,
-                              height: 48.0,
-                              color: Colors.white,
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 8.0),
-                            ),
-                            Expanded(
+                        child: Container(
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
+                                children: [
+                                  Container(
+                                    width: screenWidth * 0.6,
+                                    height: 18,
+                                    color: Colors.white,
+                                  ),
+                                  addVerticalSpace(16),
                                   Container(
                                     width: double.infinity,
-                                    height: 8.0,
+                                    height: 200,
                                     color: Colors.white,
                                   ),
-                                  const Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 2.0),
-                                  ),
+                                  addVerticalSpace(8),
                                   Container(
-                                    width: double.infinity,
-                                    height: 8.0,
+                                    width: screenWidth * 0.4,
+                                    height: 14,
                                     color: Colors.white,
                                   ),
-                                  const Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 2.0),
+                                  addVerticalSpace(8),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: double.infinity,
+                                        height: 12,
+                                        color: Colors.white,
+                                      ),
+                                      addVerticalSpace(8),
+                                      Container(
+                                        width: double.infinity,
+                                        height: 12,
+                                        color: Colors.white,
+                                      ),
+                                      addVerticalSpace(8),
+                                      Container(
+                                        width: screenWidth * 0.4,
+                                        height: 12,
+                                        color: Colors.white,
+                                      ),
+                                    ],
                                   ),
-                                  Container(
-                                    width: 40.0,
-                                    height: 8.0,
-                                    color: Colors.white,
+                                  addVerticalSpace(16),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        width: screenWidth * 0.3,
+                                        height: 10,
+                                        color: Colors.white,
+                                      ),
+                                      Container(
+                                        width: screenWidth * 0.3,
+                                        height: 10,
+                                        color: Colors.white,
+                                      )
+                                    ],
                                   ),
                                 ],
                               ),
                             )
-                          ],
                         ),
                       ),
                       itemCount: 6,

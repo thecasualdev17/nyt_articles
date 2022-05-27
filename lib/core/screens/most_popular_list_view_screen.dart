@@ -8,6 +8,7 @@ import 'package:nyt_articles/core/models/most_popular/most_popular.dart';
 import 'package:nyt_articles/core/providers/data_providers.dart';
 import 'package:nyt_articles/utils/mixins/common_mixins.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MostPopularListViewScreen extends HookConsumerWidget {
 
@@ -63,11 +64,17 @@ class MostPopularListViewScreen extends HookConsumerWidget {
                                 imageUrl = articlesList.value[index].media!.first.mediaMetadata!.firstWhere((element) => element.url != '').url!;
                               }
                             }
+                            var pageUrl = '';
+                            if(articlesList.value[index].url != null){
+                              pageUrl = articlesList.value[index].url!;
+                            }
                             return Column(
                               children: [
                                 InkWell(
-                                  onTap: (){
-                                    print('for read more');
+                                  onTap: () async{
+                                    if(pageUrl.isNotEmpty){
+                                      await launchUrl(Uri.parse(pageUrl));
+                                    }
                                   },
                                   child: Card(
                                       child: Padding(
@@ -156,7 +163,6 @@ class MostPopularListViewScreen extends HookConsumerWidget {
                         itemBuilder: (_, __) => Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
                           child: Container(
-
                             child: Padding(
                                 padding: const EdgeInsets.all(16.0),
                                 child: Column(
