@@ -28,9 +28,6 @@ class Article extends Equatable{
   final String? typeOfMaterial;
   @JsonKey(name: '_id')
   final String? id;
-
-  @JsonKey(name: 'print_page')
-  final int? printPage;
   @JsonKey(name: 'word_count')
   final int? wordCount;
 
@@ -41,13 +38,13 @@ class Article extends Equatable{
 
   const Article(this.snippet, this.source, this.uri, this.webUrl, this.printSection,
       this.pubDate, this.documentType, this.newsDesk, this.sectionName,
-      this.typeOfMaterial, this.id, this.printPage, this.wordCount, this.headline,
+      this.typeOfMaterial, this.id, this.wordCount, this.headline,
       this.byline, this.multimedia, this.keywords);
 
   @override
   List<Object?> get props => [
     snippet, source, uri, webUrl, printSection, pubDate, documentType, newsDesk, sectionName,
-    typeOfMaterial, id, printPage, wordCount, headline, byline, multimedia, keywords
+    typeOfMaterial, id, wordCount, headline, byline, multimedia, keywords
   ];
 
   factory Article.fromJson(Map<String, dynamic> json) => _$ArticleFromJson(json);

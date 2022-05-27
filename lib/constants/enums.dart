@@ -49,3 +49,11 @@ extension PeriodExtention on Period{
   }
 }
 // Period End
+
+// Most Popular Type Start
+enum MostPopularArticleType{
+  mostViewed,
+  mostEmailed,
+  mostShared
+}
+// Most Popular End
