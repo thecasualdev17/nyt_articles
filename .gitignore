@@ -49,3 +49,4 @@ app.*.map.json
 # Skipping ios and android folder for the mean time
 
 /ios
+lib/config/secret.dart
